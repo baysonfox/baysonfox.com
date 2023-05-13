@@ -62,6 +62,3 @@ ignore: null
 theme: icarus
 deploy:
   type: ''
-lazyload:
-  enable: true
-  onlypost: true
