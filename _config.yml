@@ -62,3 +62,8 @@ ignore: null
 theme: icarus
 deploy:
   type: ''
+plugins:
+- hexo-generator-robotstxt
+robotstxt:
+  useragent: "*"
+  
