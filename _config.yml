@@ -66,4 +66,20 @@ plugins:
 - hexo-generator-robotstxt
 robotstxt:
   useragent: "*"
-  
+lazy_load:
+  enable: true
+neat_enable: true
+neat_html:
+  enable: true
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+filter_optimize:
+  enable: true
+  versioning: false
+  css:
+    minify: false
+    inlines:
+      - css/default.css
+  priority: 15
