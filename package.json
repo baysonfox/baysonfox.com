@@ -29,6 +29,8 @@
     "hexo-theme-landscape": "^1.0.0",
     "inferno": "^8.1.1",
     "inferno-create-element": "^8.1.1",
-    "justifiedGallery": "^3.8.1"
+    "justifiedGallery": "^3.8.1",
+    "probe-image-size": "^7.2.3",
+    "sync-request": "^6.1.0"
   }
 }
