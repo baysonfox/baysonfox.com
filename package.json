@@ -19,6 +19,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^3.0.0",
     "hexo": "^6.3.0",
+    "hexo-pagination": "^2.0.0",
     "hexo-blog-encrypt": "^3.1.6",
     "hexo-component-inferno": "^2.0.3",
     "hexo-generator-archive": "^2.0.0",
@@ -36,8 +37,8 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^1.0.0",
-    "inferno": "^8.1.1",
-    "inferno-create-element": "^8.1.1",
+    "inferno": "^7.3.3",
+    "inferno-create-element": "^7.3.3",
     "justifiedGallery": "^3.8.1",
     "probe-image-size": "^7.2.3",
     "sync-request": "^6.1.0"
