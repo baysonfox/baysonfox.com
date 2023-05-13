@@ -1,6 +1,12 @@
 self.importScripts("https://cdn.bootcdn.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js");
 self.toolbox.options.debug = false;
 self.toolbox.options.networkTimeoutSeconds = 3;
+var cacheVersion = "-17104";
+var staticImageCacheName = "image" + cacheVersion;
+var staticAssetsCacheName = "assets" + cacheVersion;
+var contentCacheName = "content" + cacheVersion;
+var vendorCacheName = "vendor" + cacheVersion;
+var maxEntries = 100;
 
 /* Static ImageCache */
 self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
@@ -50,7 +56,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
 
 /* ContentCache */
 self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
-    origin: /qianling\.pw/,
+    origin: /baysonfox\.com/,
     cache: {
        name: contentCacheName,
        maxEntries: maxEntries
