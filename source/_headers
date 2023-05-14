@@ -1,0 +1,4 @@
+# _headers
+/
+    Link: scripts/script.outbound-links.file-downloads.js; rel=preload; as=script
+    Link: js/custom/custom.js; rel=preload; as=script
