@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
-    "bulma-stylus": "^0.8.0",
+    "bulma-stylus": "^0.9.1",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^8.0.0",
     "gulp-uglify": "^3.0.2",
