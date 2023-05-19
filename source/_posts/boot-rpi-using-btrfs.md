@@ -118,7 +118,7 @@ Device     Boot     Start       End   Sectors   Size Id Type
 2. 编辑 `/tmp/rootfs/boot/cmdline.txt`
 
     ```shell
-    # 编辑 /boot/cmdline.txt, 将 rootfstype=ext4 改为 rootfstype=btrfs fsck.repair=yes 改为 fsck.repair=no
+        # 编辑 /boot/cmdline.txt, 将 rootfstype=ext4 改为 rootfstype=btrfs fsck.repair=yes 改为 fsck.repair=no
         sudo vi /tmp/rootfs/boot/cmdline.txt
         # e.g. 
         # console=serial0,115200 console=tty1 root=PARTUUID=0ee3e8a8-02 rootfstype=btrfs fsck.repair=no rootwait
@@ -136,7 +136,7 @@ Device     Boot     Start       End   Sectors   Size Id Type
             exit 0 
         fi 
         echo ============ UPDATE INITRAMFS ============== 
-        mkinitramfs -o /boot/initramfs-btrfs.gz 0,86 EUR 
+        mkinitramfs -o /boot/initramfs-btrfs.gz
         echo ============ UPDATE COMPLETED ==============
 
     # 确保权限

@@ -13,9 +13,9 @@ date: 2020-06-27 16:58:54
 
 插件的功能也比较多，可以直接换装，更换看板娘等.
 
-![image.png](https://i.loli.net/2020/06/27/iFcKySW8VbTuJIm.png)
+![image.png](https://article.biliimg.com/bfs/article/78c3bd40061b4873d3c36e580480125c2cc2d8d1.png@1e_1c.webp)
 
-![image.png](https://i.loli.net/2020/06/27/TFm5gqz9AHCYaDk.png)
+![image.png](https://article.biliimg.com/bfs/article/358b912b7470b66b0a4bbd569ef297c2e95cb130.png@1e_1c.webp)
 
 安装且启用之后可以在后台的 **设置 -> Live 2D 设置** 中设置看板娘.
 

@@ -19,8 +19,8 @@ date: 2022-06-11 10:38:55
 
 <div class="justified-gallery">
 
-![通常](https://article.biliimg.com/bfs/article/64cc3bebf27321ad2467ca61b204c0faec108c1b.png)
-![晚礼服](https://article.biliimg.com/bfs/article/bdf92338ce7f68560015ef95f4d0e28107f70199.png)
+![通常](https://article.biliimg.com/bfs/article/64cc3bebf27321ad2467ca61b204c0faec108c1b.png@1e_1c.webp)
+![晚礼服](https://article.biliimg.com/bfs/article/bdf92338ce7f68560015ef95f4d0e28107f70199.png@1e_1c.webp)
 
 </div>
 <a href="https://baysonfox.com/files/Cyralive1.4.7z" class="button is-info">下载 Cyralive1.4</a>

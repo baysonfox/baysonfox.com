@@ -32,7 +32,7 @@ date: 2020-07-07 22:43:20
 1. 876396-冰糖IO\* 在2021/7/29的录播 产生大量分片，无法处理，故无档
 2. _3822389-有栖Mana\_Official_ 在2021/7/30的B限录播文件损坏 无法处理 无档
 
-![image.png](https://cdn.jsdelivr.net/gh/baysonfox/image-bed@master/img/20210216180329.png)
+![image.png](https://article.biliimg.com/bfs/article/1791b8e569f3a2f329f448137b44efcf0c1a265c.png@1e_1c.webp)
 
 **录制VTuber和VUP们仅仅是个人爱好和存档用**  
 如有不妥可联系baysonfox#baysonfox.com (# -> @).
