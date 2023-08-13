@@ -351,4 +351,5 @@ providers:
     # Name or URL template of the webfont CDN provider
     fontcdn: google
     # Name or URL of the fontawesome icon font CDN provider
-    iconcdn: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.css'
+    # iconcdn: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.css'
+    iconcdn: '/fonts/fontawesome-streamlined.css'
