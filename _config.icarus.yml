@@ -206,7 +206,7 @@ widgets:
         # Author's current location
         location: Earth
         # URL or path to the avatar image
-        avatar: https://cdn1.tianli0.top/gh/baysonfox/image-bed@master/img/baysonfox-favicon-optimized.svg
+        avatar: https://jsd.onmicrosoft.cn/gh/baysonfox/image-bed@master/img/baysonfox-favicon-optimized.svg
         # Whether show the rounded avatar image
         avatar_rounded: false
         # Email address for the Gravatar
