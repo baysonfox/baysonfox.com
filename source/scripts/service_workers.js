@@ -64,7 +64,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.networkFirst, {
 });
 
 /* NoCache */
-self.toolbox.router.get("/sw.js",self.toolbox.networkFirst);
+self.toolbox.router.get("scripts/service_workers.js",self.toolbox.networkFirst);
 
 /* PreCache */
 self.addEventListener("install",
