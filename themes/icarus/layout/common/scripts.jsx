@@ -30,8 +30,9 @@ module.exports = class extends Component {
         };`;
 
         return <Fragment>
-            <script src={cdn('jquery', '3.3.1', 'dist/jquery.min.js')}></script>
-            <script src={cdn('moment', '2.22.2', 'min/moment-with-locales.min.js')}></script>
+            <script async src={cdn('jquery', '3.3.1', 'dist/jquery.min.js')}></script>
+            <script defer src={cdn('moment', '2.29.1', 'min/moment.min.js')}></script>
+            <script defer src={cdn('moment', '2.29.1', ('locale/' + language.toLowerCase() + '.js'))}></script>
             {clipboard && <script src={cdn('clipboard', '2.0.4', 'dist/clipboard.min.js')} defer></script>}
             <script dangerouslySetInnerHTML={{ __html: `moment.locale("${language}");` }}></script>
             <script dangerouslySetInnerHTML={{ __html: embeddedConfig }}></script>

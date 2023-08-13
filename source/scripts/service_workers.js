@@ -33,7 +33,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
     }
 });
 self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
-    origin: /npm\.elemecdn\.com/,
+    origin: /unpkg\.zhimg\.com/,
     cache: {
         name: staticAssetsCacheName,
         maxEntries: maxEntries
