@@ -61,10 +61,6 @@ ignore: null
 theme: icarus
 deploy:
   type: ''
-plugins:
-- hexo-generator-robotstxt
-robotstxt:
-  useragent: "*"
 lazy_load:
   enable: true
 neat_enable: true
@@ -82,3 +78,7 @@ filter_optimize:
     inlines:
       - css/default.css
   priority: 15
+sitemap:
+    path: sitemap.xml
+    tag: false # 按需选择
+    category: false # 按需选择
