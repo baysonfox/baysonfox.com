@@ -156,9 +156,9 @@ search:
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    type: disqus
+    type: disqusjs
     # Disqus shortname
-    shortname: 'disqus-comments'
+    shortname: 'baysonfox'
     api_key: EQh2OSpge1Lklsq5EApdCt7Np7m66E8r0Rmo9vZHEWqSCpntyN1y1zByyKHiNVEV
     api: https://disqus.skk.moe/disqus
     admin: baysonfox
