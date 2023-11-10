@@ -5265,7 +5265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hexo-renderer-stylus@npm:^2.1.0":
+"hexo-renderer-stylus@npm:^2.0.0":
   version: 2.1.0
   resolution: "hexo-renderer-stylus@npm:2.1.0"
   dependencies:
@@ -5318,9 +5318,8 @@ __metadata:
     hexo-renderer-ejs: "npm:^2.0.0"
     hexo-renderer-inferno: "npm:^0.1.3"
     hexo-renderer-marked: "npm:^6.0.0"
-    hexo-renderer-stylus: "npm:^2.1.0"
+    hexo-renderer-stylus: "npm:^2.0.0"
     hexo-server: "npm:^3.0.0"
-    hexo-theme-landscape: "npm:^1.0.0"
     inferno: "npm:^7.3.3"
     inferno-create-element: "npm:^7.3.3"
     justifiedGallery: "npm:^3.8.1"
@@ -5328,13 +5327,6 @@ __metadata:
     sync-request: "npm:^6.1.0"
   languageName: unknown
   linkType: soft
-
-"hexo-theme-landscape@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "hexo-theme-landscape@npm:1.0.0"
-  checksum: 817ef9a2ca62ef5344c59c97c1c2880bb22d34cc337e9cc4daace8e80796f30577ca22d705af464881a7f7f4ecca560c31527826d1b083e074b6ee50d07de0fb
-  languageName: node
-  linkType: hard
 
 "hexo-util@npm:^2.0.0, hexo-util@npm:^2.1.0, hexo-util@npm:^2.2.0, hexo-util@npm:^2.5.0, hexo-util@npm:^2.7.0":
   version: 2.7.0
