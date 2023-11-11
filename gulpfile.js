@@ -28,9 +28,9 @@ gulp.task('minify-css', function() {
 
 // Purging CSS
 gulp.task('purge-css', () => {
-  return gulp.src('public/**/*.css')
+  return gulp.src(`${root}/${pattern}.css`)
       .pipe(purgecss({
-          content: ['public/**/*.html']
+          content: [`${root}/${pattern}.html`]
       }))
       .pipe(gulp.dest('public/'))
 })
