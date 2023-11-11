@@ -47,5 +47,6 @@
     "justifiedGallery": "^3.8.1",
     "probe-image-size": "^7.2.3",
     "sync-request": "^6.1.0"
-  }
+  },
+  "packageManager": "yarn@4.0.1"
 }
