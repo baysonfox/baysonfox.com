@@ -2279,11 +2279,6 @@ caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30001541:
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001561.tgz#752f21f56f96f1b1a52e97aae98c57c562d5d9da"
   integrity sha512-NTt0DNoKe958Q0BE0j0c1V9jbUzhBxHIEJy7asmGrpE0yG63KTV7PLHPnK2E1O9RsQrQ081I3NLuXGS6zht3cw==
 
-cargo-cp-artifact@^0.1:
-  version "0.1.8"
-  resolved "https://registry.npmmirror.com/cargo-cp-artifact/-/cargo-cp-artifact-0.1.8.tgz#353814f49f6aa76601a4bcb3ea5f3071180b90de"
-  integrity sha512-3j4DaoTrsCD1MRkTF2Soacii0Nx7UHCce0EwUf4fHnggwiE4fbmF2AbnfzayR36DF8KGadfh7M/Yfy625kgPlA==
-
 caseless@^0.12.0, caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.npmmirror.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -2382,13 +2377,6 @@ clean-css@4.2.x:
   version "4.2.4"
   resolved "https://registry.npmmirror.com/clean-css/-/clean-css-4.2.4.tgz#733bf46eba4e607c6891ea57c24a989356831178"
   integrity sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==
-  dependencies:
-    source-map "~0.6.0"
-
-clean-css@^5.3.1:
-  version "5.3.2"
-  resolved "https://registry.npmmirror.com/clean-css/-/clean-css-5.3.2.tgz#70ecc7d4d4114921f5d298349ff86a31a9975224"
-  integrity sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww==
   dependencies:
     source-map "~0.6.0"
 
@@ -4348,17 +4336,6 @@ hexo-native-lazy-load@^1.1.2:
   dependencies:
     image-size "^0.8.3"
 
-hexo-optimize@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.npmmirror.com/hexo-optimize/-/hexo-optimize-3.3.0.tgz#690240b09b0023d9d96a6245517ebf84114c3af6"
-  integrity sha512-h/CYQIbz94N08tlht4fnyIVjqqPeBN+4xvQvfs8k7NKI59JPynueaLFCM71IiYtSpQOJiFU7TJLZWcWRqihU5A==
-  dependencies:
-    bluebird "^3.7.2"
-    cargo-cp-artifact "^0.1"
-    clean-css "^5.3.1"
-    micromatch "^4.0.5"
-    terser "^5.15.1"
-
 hexo-pagination@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/hexo-pagination/-/hexo-pagination-3.0.0.tgz#b98b050bbddff25ae646e3d00ad607ac6ae77ea7"
@@ -5502,7 +5479,7 @@ micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-micromatch@^4.0.4, micromatch@^4.0.5:
+micromatch@^4.0.4:
   version "4.0.5"
   resolved "https://registry.npmmirror.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
   integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
@@ -7333,7 +7310,7 @@ tempfile@^2.0.0:
     temp-dir "^1.0.0"
     uuid "^3.0.1"
 
-terser@^5.15.1, terser@^5.7.1:
+terser@^5.7.1:
   version "5.24.0"
   resolved "https://registry.npmmirror.com/terser/-/terser-5.24.0.tgz#4ae50302977bca4831ccc7b4fef63a3c04228364"
   integrity sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==
