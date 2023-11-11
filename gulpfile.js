@@ -4,10 +4,36 @@ let htmlmin = require('gulp-htmlmin')
 let htmlclean = require('gulp-htmlclean');
 let babel = require('gulp-babel') /* 转换为es2015 */
 let uglify = require('gulp-uglify')
+let purgecss = require('gulp-purgecss')
 
 // 设置根目录
 const root = './public'
 const pattern = '**/*'
+
+// 压缩css
+gulp.task('minify-css', function() {
+  return gulp
+    // 匹配所有 .css结尾的文件
+    .src(`${root}/${pattern}.css`)
+    .pipe(
+      cleanCSS({
+        // clean-css hack: see clean-css/clean-css
+        compatibility: '*',
+        format: 'beautify',
+        level: 2
+      })
+    )
+    .pipe(gulp.dest('./public'))
+})
+
+// Purging CSS
+gulp.task('purge-css', () => {
+  return gulp.src('public/**/*.css')
+      .pipe(purgecss({
+          content: ['public/**/*.html']
+      }))
+      .pipe(gulp.dest('public/'))
+})
 
 // 压缩html
 gulp.task('minify-html', function() {
@@ -26,22 +52,6 @@ gulp.task('minify-html', function() {
     .pipe(gulp.dest('./public'))
 })
 
-// 压缩css
-gulp.task('minify-css', function() {
-  return gulp
-    // 匹配所有 .css结尾的文件
-    .src(`${root}/${pattern}.css`)
-    .pipe(
-      cleanCSS({
-        // clean-css hack: see clean-css/clean-css
-        compatibility: '*',
-        format: 'beautify',
-        level: 2
-      })
-    )
-    .pipe(gulp.dest('./public'))
-})
-
 gulp.task('minify-js', function() {
   return gulp
     // 匹配所有 .js结尾的文件
@@ -55,4 +65,4 @@ gulp.task('minify-js', function() {
     .pipe(gulp.dest('./public'))
 })
 
-gulp.task('default', gulp.series('minify-html','minify-css','minify-js'))
+gulp.task('default', gulp.series('minify-html','minify-css', 'purge-css','minify-js'))
