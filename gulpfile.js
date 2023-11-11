@@ -1,19 +1,68 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify-es').default;
+let gulp = require('gulp')
+let cleanCSS = require('gulp-clean-css')
+let htmlmin = require('gulp-htmlmin')
+let htmlclean = require('gulp-htmlclean');
+let babel = require('gulp-babel') /* 转换为es2015 */
+let uglify = require('gulp-uglify')
+let purgecss = require('gulp-purgecss')
 
-// 压缩js文件
+// 设置根目录
+const root = './public'
+const pattern = '**/*'
+
+// 压缩css
+gulp.task('minify-css', function() {
+  return gulp
+    // 匹配所有 .css结尾的文件
+    .src(`${root}/${pattern}.css`)
+    .pipe(
+      cleanCSS({
+        // clean-css hack: see clean-css/clean-css
+        compatibility: '*',
+        format: 'beautify',
+        level: 2
+      })
+    )
+    .pipe(gulp.dest('./public'))
+})
+
+// Purging CSS
+gulp.task('purge-css', () => {
+  return gulp.src('public/**/*.css')
+      .pipe(purgecss({
+          content: ['public/**/*.html']
+      }))
+      .pipe(gulp.dest('public/'))
+})
+
+// 压缩html
+gulp.task('minify-html', function() {
+  return gulp
+    // 匹配所有 .html结尾的文件
+    .src(`${root}/${pattern}.html`)
+    .pipe(htmlclean())
+    .pipe(
+      htmlmin({
+        removeComments: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      })
+    )
+    .pipe(gulp.dest('./public'))
+})
+
 gulp.task('minify-js', function() {
-  return gulp.src(['./public/**/.js', '!./public/js/**/*min.js'])
-  .pipe(uglify())
-  .pipe(gulp.dest('./public'));
-});
-gulp.task('minify-generated-js', function() {
-  return gulp.src(['./public/js/*.js', '!./public/js/*min.js'])
-  .pipe(uglify())
-  .pipe(gulp.dest('./public/js'));
-});
-// 默认任务 gulp 4.0 适用的方式
-gulp.task('default', gulp.parallel('minify-js', 'minify-generated-js')
- //build the website
-);
+  return gulp
+    // 匹配所有 .js结尾的文件
+    .src(`${root}/${pattern}.js`)
+    .pipe(
+      babel({
+        presets: ['@babel/env']
+      })
+    )
+    .pipe(uglify())
+    .pipe(gulp.dest('./public'))
+})
 
+gulp.task('default', gulp.series('minify-html','minify-css', 'purge-css','minify-js'))
