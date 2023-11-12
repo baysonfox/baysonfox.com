@@ -13,9 +13,9 @@ date: 2022-06-11 10:38:55
 功能上具有最基本的备忘录，时钟，日历等功能.  
 外观具有晚礼服和原版两种样式.
 
-{% raw %}<article class="message is-warning"><div class="message-body">{% endraw %}
+<article class="message is-warning"><div class="message-body">
 如果通过命令行来带参数运行桌宠的话，说不定会有什么好事发生……？
-{% raw %}</div></article>{% endraw %}
+</div></article>
 
 <div class="justified-gallery">
 
