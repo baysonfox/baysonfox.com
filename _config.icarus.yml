@@ -172,13 +172,6 @@ donates:
         type: afdian
         # URL to the "Afdian.net" personal page
         url: 'https://afdian.net/a/baysonfox'
-    # Paypal donate button configurations
-    -
-        type: paypal
-        # Paypal business ID or email address
-        business: 'baysonfox@gmail.com'
-        # Currency code
-        currency_code: CNY
 
 # Sidebar configurations.
 # Please be noted that a sidebar is only visible when it has at least one widget
