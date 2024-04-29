@@ -1,9 +1,10 @@
 {
 	"packageManager": "pnpm@9.0.6+sha1.648f6014eb363abb36618f2ba59282a9eeb3e879",
 	"dependencies": {
+		"@fullhuman/postcss-purgecss": "^6.0.0",
 		"autoprefixer": "^10.4.19",
 		"postcss": "^8.4.38",
-		"postcss-lightningcss": "^1.0.0",
-		"@fullhuman/postcss-purgecss": "^6.0.0"
+		"postcss-cli": "^11.0.0",
+		"postcss-lightningcss": "^1.0.0"
 	}
 }
