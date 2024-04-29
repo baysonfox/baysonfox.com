@@ -1,0 +1,156 @@
+baseURL: https://baysonfox.com/
+languageCode: zh-cn
+title: 湾儿子狐狸
+theme: hugo-theme-stack
+copyright: baysonfox
+hasCJKLanguage: true
+
+permalinks:
+  post: /:year/:month/:day/:filename/
+  page: /:filename/
+
+services:
+  disqus:
+    shortname: "baysonfox"
+
+params:
+  description: 湾狐狸的小小角落
+  mainSections: post
+  featuredImageField: image
+  rssFullContent: true
+  favicon: /favicon.svg
+
+  footer:
+    since: 2020
+    customText: "Made with ❤️ from baysonfox"
+
+  article:
+    math: false
+    toc: true
+    readingTime: true
+    license:
+      enabled: true
+      default: "Licensed under CC BY-NC-SA 4.0"
+
+  sidebar:
+    emoji: 🪄
+    avatar:
+      enabled: true
+      local: true
+      # assets/${avatar.src}
+      src: avatar.jpg
+
+  comments:
+    enabled: true
+    provider: disqus
+
+    disqusjs:
+      shortname: "baysonfox"
+      apiUrl:
+      apiKey:
+      admin:
+      adminLabel:
+
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 5
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 10
+    page:
+      - type: toc
+
+  opengraph:
+    twitter:
+      site: baysonfox.com
+      card: summary_large_image
+
+  defaultImage:
+    opengraph:
+      enabled: false
+      local: false
+      src: "/favicon.svg"
+
+  colorScheme:
+    toggle: true
+    default: auto
+
+menu:
+  main:
+    - name: 主页
+      url: /
+      weight: -100
+      params:
+        newTab: false
+        icon: home
+    - name: 分类
+      url: /categories/
+      weight: -90
+      params:
+        newTab: false
+        icon: categories
+    - name: 录播站
+      url: https://rec.baysonfox.com
+      weight: -80
+      params:
+        newTab: true
+        icon: link
+    - name: 提问的智慧
+      url: https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md
+      weight: -70
+      params:
+        newTab: true
+        icon: link
+
+  social:
+    - name: GitHub
+      url: https://github.com/baysonfox
+      weight: -60
+      params:
+        newTab: true
+        icon: brand-github
+
+    - name: Twitter
+      url: https://twitter.com/baysonfox
+      weight: -50
+      params:
+        newTab: true
+        icon: brand-twitter
+
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+
+    - name: categories
+      weight: 200
+
+markup:
+  hightlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: false
+    style: monokai
+    tabWidth: 4
+
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+
+build:
+  writeStats: true
+  

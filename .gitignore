@@ -1,16 +1,12 @@
 .DS_Store
 Thumbs.db
-db.json
-*.log
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Temporary lock file while building
+/.hugo_build.lock
+
 node_modules/
-public/
-source/_drafts
-.deploy*/
-_multiconfig.yml
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions

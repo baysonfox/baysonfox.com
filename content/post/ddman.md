@@ -1,16 +1,21 @@
 ---
-title: 一个野生DD录播man的录播站
-tags: []
-id: '30'
-categories:
-  - 博客
-date: 2020-07-07 22:43:20
+title: 一个野生录播man的录播站
+description: ""
+date: 2024-04-23T10:01:13.725Z
+preview: ""
+draft: false
+tags: ["录播"]
+categories: ["折腾"]
+type: default
 ---
-
 之前录了很多Vtuber的直播，全部上传到了录播站，可以用侧栏的“[录播站](https://rec.baysonfox.com)”访问
 
+\[2024/4/23\] 旧的录播数据在微软之前针对 Microsoft 365 E5 全局的清剿中不幸全部丢失，一切重新开始，部分紧急备份的数据重新上传中.
+
+以下为历史更新记录：
+{{<toggle>}}
 \[2021/2/28\] Remove Ywwuyi _(22727127-ywwuyi)_  
-\[2021/2/28\] Remove _5086-哔哩哔哩线下活动_  
+\[2021/2/28\] Remove _5086-哔哩**哔哩线下活动_  
 \[2021/3/8\] 网络不稳定，只录下了一部分  
 \[2021/4/17\] 数据结构调整，老存档被统一移动到ARCHIVE文件夹下  
 \[2021/4/27\] 录播暂时停止更新，预计在5.1恢复，届时稳定性会大大提高.  
@@ -31,8 +36,9 @@ date: 2020-07-07 22:43:20
 
 1. 876396-冰糖IO\* 在2021/7/29的录播 产生大量分片，无法处理，故无档
 2. _3822389-有栖Mana\_Official_ 在2021/7/30的B限录播文件损坏 无法处理 无档
+{{</ toggle>}}
 
-![image.png](https://article.biliimg.com/bfs/article/1791b8e569f3a2f329f448137b44efcf0c1a265c.png@1e_1c.webp)
+![image.png](https://p0.meituan.net/csc/2677774ad158fd6dda25332950ce3f3441638.png@1e_1c.webp)
 
 **录制VTuber和VUP们仅仅是个人爱好和存档用**  
 如有不妥可联系baysonfox#baysonfox.com (# -> @).

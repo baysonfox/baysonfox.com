@@ -1,15 +1,16 @@
----
-title: 使用 Btrfs 格式的根分区启动树莓派
-tags:
-  - Btrfs
-  - 树莓派
-id: '121'
-categories:
-  - 博客
-date: 2022-07-20 22:00:47
----
++++
+title = '使用 Btrfs 格式的根分区启动树莓派'
+date = 2022-07-20T22:00:47+08:00
+draft = false
+tags = ['Btrfs', '树莓派']
+categories = '折腾'
 
-### 1\. 重新生成 initramfs
+license = true
+toc = true
+comments = true
++++
+
+## 重新生成 initramfs
 
 在默认情况下，Raspberry Pi OS 的 btrfs 是支持是作为 kernel modules 存在的，需要重新生成对应的 initramfs 使内核能够挂载 btrfs 文件系统.
 
@@ -19,15 +20,16 @@ date: 2022-07-20 22:00:47
 sudo apt install initramfs-tools btrfs-tools
 ```
 
-向 `/etc/initramfs-tools/modules` 中添加相应的 kernel modules :
+向 `/etc/initramfs-tools/modules` 中添加相应的 kernel modules :  
+`sudo vi /etc/initramfs-tools/modules`
 
 ```shell
-sudo vi /etc/initramfs-tools/modules
-# 以下内容输入到vi窗口内
+...
 btrfs
 xor
 zlib_deflate
 raid6_pq
+
 ```
 
 保存后，使用 `mkinitramfs -o /boot/initramfs-btrfs.gz` 生成新的 initramfs.  
@@ -46,15 +48,16 @@ initramfs initramfs-btrfs.gz
 
 * * *
 
-### 2\. 将 ext4 rootfs 转换成 btrfs 格式
+## 将 ext4 rootfs 转换成 btrfs 格式
 
 在 **linux** 下，将装有系统的 SD卡 / 硬盘链接电脑，通过 `btrfs-convert` 将 rootfs 转换成 btrfs 格式，以我的硬盘为例:  
 注: /dev/sdb2 为 rootfs 分区，下文以它为例
 
-```shell
+```text
 # 如果是SD卡，将 /dev/sda 替换成对应设备
 
-fdisk -l /dev/sda
+root@baysonfox:~# fdisk -l /dev/sda
+
 Disk /dev/sdb: 465.76 GiB, 500107862016 bytes, 976773168 sectors
 Disk model:                 
 Units: sectors of 1 * 512 = 512 bytes
@@ -84,26 +87,26 @@ Device     Boot     Start       End   Sectors   Size Id Type
 
 4. 在 rootfs 下创建 swap 子卷，并禁用 btrfs 的 CoW，存放 swap 文件
 
-```shell
-# 在树莓派 rootfs 分区下创建 ./swap 子卷存放 swap 文件 
-    cd /tmp/rootfs
-    sudo btrfs subvolume create swap
-# 根据 https://wiki.archlinux.org/title/btrfs#Swap_file
-    sudo chattr +C swap/
-    cd swap
-    sudo dd if=/dev/zero of=swapfile bs=1M count=512 status=progress
-    sudo chmod 0600 swapfile
-# 编辑 /etc/dphys-swapfile 添加 CONF_SWAPFILE=/swap/swapfile
-    sudo vi /tmp/rootfs/etc/dphys-swapfile
-    # [...]
-    # where we want the swapfile to be, this is the default
-    CONF_SWAPFILE=/swap/swapfile
-    # [...]
-```
+    ```shell
+    # 在树莓派 rootfs 分区下创建 ./swap 子卷存放 swap 文件 
+        cd /tmp/rootfs
+        sudo btrfs subvolume create swap
+    # 根据 https://wiki.archlinux.org/title/btrfs#Swap_file
+        sudo chattr +C swap/
+        cd swap
+        sudo dd if=/dev/zero of=swapfile bs=1M count=512 status=progress
+        sudo chmod 0600 swapfile
+    # 编辑 /etc/dphys-swapfile 添加 CONF_SWAPFILE=/swap/swapfile
+        sudo vi /tmp/rootfs/etc/dphys-swapfile
+        # [...]
+        # where we want the swapfile to be, this is the default
+        CONF_SWAPFILE=/swap/swapfile
+        # [...]
+    ```
 
 * * *
 
-### 3\. 调整挂载和系统设置
+## 调整挂载和系统设置
 
 1. 编辑 `/tmp/rootfs/etc/fstab`
 
@@ -151,7 +154,3 @@ Device     Boot     Start       End   Sectors   Size Id Type
     sudo dphys-swapfile install
     sudo dphys-swapfile swapon
     ```
-
-* * *
-
-### 4\. Enjoy
