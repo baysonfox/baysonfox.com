@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Allow: /archives/
-Allow: /about/
-Allow: /links/
-
-Disallow: /tags/
-
-Sitemap: https://baysonfox.com/sitemap.xml
