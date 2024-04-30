@@ -36,9 +36,10 @@ params:
     emoji: 🪄
     avatar:
       enabled: true
-      local: true
+      local: false
       # assets/${avatar.src}
-      src: avatar.jpg
+      # src: https://jsd.onmicrosoft.cn/gh/baysonfox/image-bed@master/img/baysonfox-favicon-optimized.svg
+      src: /favicon.svg
 
   comments:
     enabled: true
