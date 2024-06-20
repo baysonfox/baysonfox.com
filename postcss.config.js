@@ -11,7 +11,8 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 	},
 	variables: true,
 	safelist: {
-		standard: ['data-scheme', 'copyCodeButton', 'show-menu', 'is-active', 'show']
+		standard: ['copyCodeButton', 'show-menu', 'is-active', 'show'],
+		greedy: [/data-scheme$/]
 	}
   });
   
@@ -19,20 +20,20 @@ process.env.HUGO_ENVIRONMENT === 'production'
   ? optimize_enable = true // <-- default for `minify`
   : optimize_enable = false
 
+const lightningcss = postcssLightningcss({
+	browsers: ">= 2%",
+	lightningcssOptions: {
+		minify: optimize_enable,
+		cssModules: false,
+		drafts: {
+			nesting: true,
+		}
+	}
+})
 
   module.exports = {
 	plugins: [
 		// activate purgecss and postcssLightningcss when optimize_enable is true
-		optimize_enable && purgecss,
-		optimize_enable && postcssLightningcss({
-			browsers: ">= 2%",
-			lightningcssOptions: {
-				minify: optimize_enable,
-				cssModules: false,
-				drafts: {
-					nesting: true,
-				}
-			}
-		})
+		...(optimize_enable ? [purgecss, lightningcss] : []),
 	]
   };

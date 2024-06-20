@@ -136,15 +136,13 @@ related:
       weight: 200
 
 markup:
-  hightlight:
-    anchorLineNos: false
+  highlight:
     codeFences: true
     guessSyntax: true
     lineNoStart: 1
-    lineNos: true
+    lineNos: false
     lineNumbersInTable: true
     noClasses: false
-    style: monokai
     tabWidth: 4
 
   tableOfContents:
