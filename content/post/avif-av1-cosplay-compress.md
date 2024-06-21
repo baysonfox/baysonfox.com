@@ -4,8 +4,8 @@ description: ""
 date: 2024-06-19T14:30:22.971Z
 preview: ""
 draft: false
-tags: []
-categories: []
+tags: ['AVIF', 'AV1', 'Cosplay']
+categories: ['折腾']
 type: default
 slug: avif-av1-cosplay-compress
 image: https://p0.meituan.net/csc/1a37138365cc6b426bb2cc9d498d68df36910.png@1e_1c.webp
