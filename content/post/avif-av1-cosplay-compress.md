@@ -51,10 +51,10 @@ image: https://p0.meituan.net/csc/1a37138365cc6b426bb2cc9d498d68df36910.png@1e_1
 毕竟是尺度有那么一丢丢大的 Cosplay (真的只有一丢丢！)，所以没有对比图（  
 处理用的命令如下：  
 
-```shell
+{{< highlight shell >}}
 avifenc --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim \  
 -a deltaq-mode=3 -a sharpness=3 -y 420 --jobs 8 --ignore-exif --ignore-xmp Coser-***.jpg Coser-***.avif
-```
+{{< / highlight >}}
 
 至于为什么是这么个参数，原文是这么说的：  
 > Note: "--min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim" are the recommended settings for AVIF images.  
@@ -63,7 +63,7 @@ avifenc --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim \
 
 {{< toggle "结果：">}}
 
-```text
+{{< highlight text>}}
 Successfully loaded: Coser-***.jpg
 AVIF to be written: (Lossy)
  * Resolution     : 7952x5304
@@ -87,7 +87,7 @@ Encoded successfully.
  * Color AV1 total size: 1334940 bytes
  * Alpha AV1 total size: 0 bytes
 Wrote AVIF: Coser-***.avif
-```
+{{< / highlight >}}
 
 {{< /toggle >}}
 
@@ -98,13 +98,13 @@ Wrote AVIF: Coser-***.avif
 
 随便写个小脚本:
 
-```shell
+{{< highlight shell >}}
 for file in *.{jpg,JPG};
 do avifenc --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim \
     -a deltaq-mode=3 -a sharpness=3 -y 420 --jobs 8 \
     --ignore-exif --ignore-xmp $file ${file%*.*}.avif;
 done
-```
+{{< / highlight >}}
   
 图片部分，堂堂结束！  
 
@@ -127,13 +127,13 @@ done
 
 同上，脚本如下:  
 
-```shell
+{{< highlight shell >}}
 for video in *;
 do ffmpeg -i $video -c:v libsvtav1 -preset 10 -crf 30 \
     -svtav1-params input-depth=10:tune=2:enable-qm=1:qm-min=0:keyint=300 \
     -c:a copy -threads 16 ${video%*.*}-av1.mp4;
 done
-```
+{{< / highlight >}}
 
 具体参数不再赘述，在此附上参考文章：
 
