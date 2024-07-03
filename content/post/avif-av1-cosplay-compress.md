@@ -11,6 +11,12 @@ slug: avif-av1-cosplay-compress
 image: https://p0.meituan.net/csc/1a37138365cc6b426bb2cc9d498d68df36910.png@1e_1c.webp
 ---
 
+编辑历史:  
+
+- 2024/06/29 更新 AV1 部分调参内容
+
+---
+
 ## 事出必有因
 
 前几天闲来无事，于是打算看下自己的 Cosplay 收藏有多少，遂`du -sh`，结果如下:  
@@ -66,26 +72,27 @@ avifenc --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim \
 {{< highlight text>}}
 Successfully loaded: Coser-***.jpg
 AVIF to be written: (Lossy)
- * Resolution     : 7952x5304
- * Bit Depth      : 8
- * Format         : YUV420
- * Chroma Sam. Pos: 0
- * Alpha          : Absent
- * Range          : Full
- * Color Primaries: 2
- * Transfer Char. : 2
- * Matrix Coeffs. : 6
- * ICC Profile    : Present (3144 bytes)
- * XMP Metadata   : Absent
- * Exif Metadata  : Absent
- * Transformations: None
- * Progressive    : Unavailable
-Encoding with AV1 codec 'aom' speed [6], color quality [51 (Medium)], 
-    alpha quality [100 (Lossless)], tileRowsLog2 [0], tileColsLog2 [0], 
+
+- Resolution     : 7952x5304
+- Bit Depth      : 8
+- Format         : YUV420
+- Chroma Sam. Pos: 0
+- Alpha          : Absent
+- Range          : Full
+- Color Primaries: 2
+- Transfer Char. : 2
+- Matrix Coeffs. : 6
+- ICC Profile    : Present (3144 bytes)
+- XMP Metadata   : Absent
+- Exif Metadata  : Absent
+- Transformations: None
+- Progressive    : Unavailable
+Encoding with AV1 codec 'aom' speed [6], color quality [51 (Medium)],
+    alpha quality [100 (Lossless)], tileRowsLog2 [0], tileColsLog2 [0],
     8 worker thread(s), please wait...
 Encoded successfully.
- * Color AV1 total size: 1334940 bytes
- * Alpha AV1 total size: 0 bytes
+- Color AV1 total size: 1334940 bytes
+- Alpha AV1 total size: 0 bytes
 Wrote AVIF: Coser-***.avif
 {{< / highlight >}}
 
@@ -101,7 +108,7 @@ Wrote AVIF: Coser-***.avif
 {{< highlight shell >}}
 for file in *.{jpg,JPG};
 do avifenc --min 0 --max 63 -a end-usage=q -a cq-level=18 -a tune=ssim \
-    -a deltaq-mode=3 -a sharpness=3 -y 420 --jobs 8 \
+    -a deltaq-mode=3 -a sharpness=3 -y 420 --jobs 10 \
     --ignore-exif --ignore-xmp $file ${file%*.*}.avif;
 done
 {{< / highlight >}}
@@ -129,9 +136,9 @@ done
 
 {{< highlight shell >}}
 for video in *;
-do ffmpeg -i $video -c:v libsvtav1 -preset 10 -crf 30 \
+do ffmpeg -i $video -c:v libsvtav1 -preset 10 -crf 38 \
     -svtav1-params input-depth=10:tune=2:enable-qm=1:qm-min=0:keyint=300 \
-    -c:a copy -threads 16 ${video%*.*}-av1.mp4;
+    -c:a copy -threads 10 ${video%*.*}-av1.mp4;
 done
 {{< / highlight >}}
 
@@ -151,3 +158,392 @@ Cosplay 图库里的数据实在太多 根本压不完（
 更新：压完嘞（  
 最后结果： 354G -> 64G  
 82% 的空间优化，可喜可贺可喜可贺（
+
+## 技术细节:视频下的 AV1 编码调参
+
+`ffmpeg` 作为老牌的音视频处理瑞士军刀，配合 SVT-AV1 ，可供调整的编码参数多了不是一点半点，搞得人晕头转向（  
+在此额外参考了 [Comparing SVT-AV1 Presets: Size, Quality, and Speed with CRF Variations](https://ottverse.com/analysis-of-svt-av1-presets-and-crf-values/)，文中对 SVT-AV1 编码器在不同预设和crf下的编码性能与质量进行了实验。  
+
+略过文中的测试方法，直接看结论：  
+编码性能（以 FPS 衡量）:  
+![在 crf 和预设不同情况下的编码速度(按照 FPS 标准)](https://p0.meituan.net/csc/7c50d18a437fb36bd6431a883d20e2f2492155.png@1e_1c.webp)
+
+编码质量(SSIM):  
+![编码质量（SSIM）标准](https://p1.meituan.net/csc/00e717f537c3e9e0a4e72ecfd2833849445088.png@1e_1c.webp)  
+PSNR:  
+![编码质量（PSNR）标准](https://p0.meituan.net/csc/f0a5ccb3e23edeca9e0a30f4e87ef9d7477730.png@1e_1c.webp)  
+VMAF:
+![编码质量（VMAF）标准](https://p0.meituan.net/csc/41bbeb72442428fe76b0603aa9f4cd8d462633.png@1e_1c.webp)
+
+由图可知，所使用的preset与crf (`-preset 10 -crf 38`) 下,SSIM 与 PSNR 都与较低预设值和较低 crf 的对应参数区别不大，编码速度也落在了比较舒适的范围，因此使用此参数。  
+事实上，根据原文作者的结论，似乎`-preset 12 -crf 38`与`-preset 2`的视频参数似乎区别不大，但是速度提升了135倍，完全可以直接无脑冲……？  
+
+### 用数据说话
+
+为了更贴合实际，又找了个 Cosplay 的图包里的视频进行实验:  
+实验工具:
+
+1. FFmpeg 7.0.1, built with Apple Clang version 15.0.0
+2. SVT-AV1 Encoder Lib v2.1.1, built with Apple LLVM 15.0.0
+
+实验步骤:
+
+1. 把编码的 preset 固定为 N, N∈[0,12], 步长为1
+2. 将编码所用 crf 设置为 20~63, 步长为6
+3. 对每个编码结果，测量 VMAF、SSIM与PSNR.
+
+实验结果:
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "CRF-VMAF, VMAF值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '20',
+        '26',
+        '32',
+        '38',
+        '44',
+        '50',
+        '56',
+        '62'
+      ],
+    datasets: [
+{
+    label:"preset-5",
+    data: [93.475, 93.128, 92.17, 90.777, 88.758, 86.427, 83.058, 75.349]
+},
+{
+    label:"preset-6",
+    data: [92.086, 92.081, 91.272, 89.904, 87.845, 85.251, 81.782, 73.534]
+},
+{
+    label:"preset-7",
+    data: [92.086, 92.082, 91.27, 89.9, 87.852, 85.254, 81.785, 73.539]
+},
+{
+    label:"preset-8",
+    data: [90.99, 91.079, 90.229, 88.937, 87.13, 84.8, 81.234, 71.915]
+},
+{
+    label:"preset-9",
+    data: [89.631, 89.558, 88.786, 87.568, 86.115, 83.945, 80.573, 71.412]
+},
+{
+    label:"preset-10",
+    data: [91.699, 90.679, 89.071, 87.069, 84.752, 82.1, 77.809, 67.244]
+},
+{
+    label:"preset-11",
+    data: [93.062, 91.657, 89.6, 86.905, 83.687, 80.008, 74.506, 61.702]
+},
+{
+    label:"preset-12",
+    data: [92.344, 90.801, 88.484, 85.689, 82.733, 79.0, 73.513, 59.816]
+},
+    ]
+  },
+}
+{{< /chart >}}
+
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "CRF-SSIM, SSIM值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '20',
+        '26',
+        '32',
+        '38',
+        '44',
+        '50',
+        '56',
+        '62'
+      ],
+    datasets: [
+{
+    label:"preset-5",
+    data: [0.994, 0.994, 0.993, 0.993, 0.992, 0.991, 0.99, 0.986]
+},
+{
+    label:"preset-6",
+    data: [0.994, 0.994, 0.993, 0.992, 0.992, 0.991, 0.989, 0.985]
+},
+{
+    label:"preset-7",
+    data: [0.994, 0.994, 0.993, 0.992, 0.992, 0.991, 0.989, 0.985]
+},
+{
+    label:"preset-8",
+    data: [0.993, 0.993, 0.993, 0.992, 0.991, 0.99, 0.989, 0.984]
+},
+{
+    label:"preset-9",
+    data: [0.993, 0.993, 0.992, 0.991, 0.991, 0.99, 0.988, 0.984]
+},
+{
+    label:"preset-10",
+    data: [0.993, 0.992, 0.992, 0.991, 0.99, 0.989, 0.987, 0.981]
+},
+{
+    label:"preset-11",
+    data: [0.993, 0.992, 0.992, 0.991, 0.989, 0.987, 0.985, 0.979]
+},
+{
+    label:"preset-12",
+    data: [0.993, 0.992, 0.991, 0.99, 0.989, 0.988, 0.985, 0.979]
+}
+    ]
+  },
+}
+{{< /chart >}}
+
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "CRF-PSNR, PSNR值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '20',
+        '26',
+        '32',
+        '38',
+        '44',
+        '50',
+        '56',
+        '62'
+      ],
+    datasets: [
+{
+    label:"preset-5",
+    data: [50.142, 49.879, 49.337, 48.747, 47.973, 47.195, 46.116, 44.255]
+},
+{
+    label:"preset-6",
+    data: [49.636, 49.536, 49.054, 48.482, 47.702, 46.88, 45.807, 43.888]
+},
+{
+    label:"preset-7",
+    data: [49.638, 49.531, 49.057, 48.485, 47.698, 46.879, 45.806, 43.887]
+},
+{
+    label:"preset-8",
+    data: [48.94, 49.02, 48.556, 48.013, 47.317, 46.568, 45.563, 43.449]
+},
+{
+    label:"preset-9",
+    data: [48.132, 48.231, 47.89, 47.431, 46.966, 46.29, 45.362, 43.323]
+},
+{
+    label:"preset-10",
+    data: [48.996, 48.629, 48.038, 47.332, 46.652, 45.889, 44.761, 42.599]
+},
+{
+    label:"preset-11",
+    data: [49.545, 48.923, 48.119, 47.265, 46.26, 45.334, 44.067, 41.741]
+},
+{
+    label:"preset-12",
+    data: [49.146, 48.475, 47.618, 46.773, 45.967, 45.085, 43.996, 41.66]
+}
+    ]
+  },
+}
+{{< /chart >}}
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "Preset-VMAF, VMAF值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12'
+      ],
+    datasets: [
+{
+    label:"crf-20",
+    data: [93.475, 92.086, 92.086, 90.99, 89.631, 91.699, 93.062, 92.344]
+},
+{
+    label:"crf-26",
+    data: [93.128, 92.081, 92.082, 91.079, 89.558, 90.679, 91.657, 90.801]
+},
+{
+    label:"crf-32",
+    data: [92.17, 91.272, 91.27, 90.229, 88.786, 89.071, 89.6, 88.484]
+},
+{
+    label:"crf-38",
+    data: [90.777, 89.904, 89.9, 88.937, 87.568, 87.069, 86.905, 85.689]
+},
+{
+    label:"crf-44",
+    data: [88.758, 87.845, 87.852, 87.13, 86.115, 84.752, 83.687, 82.733]
+},
+{
+    label:"crf-50",
+    data: [86.427, 85.251, 85.254, 84.8, 83.945, 82.1, 80.008, 79.0]
+},
+{
+    label:"crf-56",
+    data: [83.058, 81.782, 81.785, 81.234, 80.573, 77.809, 74.506, 73.513]
+}
+    ]
+  },
+}
+{{< /chart >}}
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "Preset-SSIM, SSIM值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12'
+      ],
+    datasets: [
+{
+    label:"crf-20",
+    data: [0.994, 0.994, 0.994, 0.993, 0.993, 0.993, 0.993, 0.993]
+},
+{
+    label:"crf-26",
+    data: [0.994, 0.994, 0.994, 0.993, 0.993, 0.992, 0.992, 0.992]
+},
+{
+    label:"crf-32",
+    data: [0.993, 0.993, 0.993, 0.993, 0.992, 0.992, 0.992, 0.991]
+},
+{
+    label:"crf-38",
+    data: [0.993, 0.992, 0.992, 0.992, 0.991, 0.991, 0.991, 0.99]
+},
+{
+    label:"crf-44",
+    data: [0.992, 0.992, 0.992, 0.991, 0.991, 0.99, 0.989, 0.989]
+},
+{
+    label:"crf-50",
+    data: [0.991, 0.991, 0.991, 0.99, 0.99, 0.989, 0.987, 0.988]
+},
+{
+    label:"crf-56",
+    data: [0.99, 0.989, 0.989, 0.989, 0.988, 0.987, 0.985, 0.985]
+}
+    ]
+  },
+}
+{{< /chart >}}
+
+{{< chart >}}
+{
+  type: 'line',
+  options: {
+    plugins: {
+        title: {
+            text: "Preset-PSNR, PSNR值",
+            display: true
+        }
+    }
+    },
+  data: {
+      labels: [
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12'
+      ],
+    datasets: [
+{
+    label:"crf-20",
+    data: [50.142, 49.636, 49.638, 48.94, 48.132, 48.996, 49.545, 49.146]
+},
+{
+    label:"crf-26",
+    data: [49.879, 49.536, 49.531, 49.02, 48.231, 48.629, 48.923, 48.475]
+},
+{
+    label:"crf-32",
+    data: [49.337, 49.054, 49.057, 48.556, 47.89, 48.038, 48.119, 47.618]
+},
+{
+    label:"crf-38",
+    data: [48.747, 48.482, 48.485, 48.013, 47.431, 47.332, 47.265, 46.773]
+},
+{
+    label:"crf-44",
+    data: [47.973, 47.702, 47.698, 47.317, 46.966, 46.652, 46.26, 45.967]
+},
+{
+    label:"crf-50",
+    data: [47.195, 46.88, 46.879, 46.568, 46.29, 45.889, 45.334, 45.085]
+},
+{
+    label:"crf-56",
+    data: [46.116, 45.807, 45.806, 45.563, 45.362, 44.761, 44.067, 43.996]
+}
+    ]
+  },
+}
+{{< /chart >}}
+
+### 那么，结论是
+
+在编码速率和编码质量来看，`-preset 10 -crf 38`的参数的确符合了要求，也没有产生视觉上的瑕疵，与上文的结论一致。  

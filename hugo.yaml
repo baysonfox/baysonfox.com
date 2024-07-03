@@ -149,6 +149,10 @@ markup:
     endLevel: 4
     ordered: true
     startLevel: 2
+  
+  goldmark:
+    renderer:
+      unsafe: true
 
 build:
   writeStats: true
