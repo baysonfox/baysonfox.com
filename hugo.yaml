@@ -43,14 +43,11 @@ params:
 
   comments:
     enabled: true
-    provider: disqus
+    provider: twikoo
 
-    disqusjs:
-      shortname: "baysonfox"
-      apiUrl:
-      apiKey:
-      admin:
-      adminLabel:
+    twikoo:
+      envId: https://twikoo.baysonfox.com/.netlify/functions/twikoo
+      lang: zh-CN
 
   widgets:
     homepage:
