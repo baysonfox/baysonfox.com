@@ -1,0 +1,5 @@
+/*
+    Link: </favicon.svg>; rel=preload; as=image
+    Link: </ts/main.js>; rel=preload; as=script
+    Link: </scss/style.css>; rel=preload; as=style
+    Link: <https://p0.meituan.net>; rel=preconnect; crossorigin
