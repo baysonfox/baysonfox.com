@@ -6,8 +6,7 @@ preview: ""
 draft: false
 tags: ['VSCode', 'Python', 'Code Infrastructure']
 categories: []
-type: default
-image: https://p0.meituan.net/csc/df73a24cff49dd8d70180c16e856cd85239299.png@1e_1c.webp
+image: https://img30.360buyimg.com/img/jfs/t20270817/35830/29/23255/11392/66c0a9d7F58a21302/58c8f125dd2e6949.png.avif
 ---
 
 ## 前言
@@ -22,7 +21,7 @@ image: https://p0.meituan.net/csc/df73a24cff49dd8d70180c16e856cd85239299.png@1e_
 
 创建一个配置文件倒也很简单，在左下角的齿轮处就有一个配置文件的选单，直接从那里选择新建一个配置文件，再指定名称就好。  
 
-![在 VSCode 上创建配置文件](https://p0.meituan.net/csc/43f42ed6bf8d03b6447fa54594506ab0171611.png)  
+![在 VSCode 上创建配置文件](https://img30.360buyimg.com/img/jfs/t20270817/58879/12/26267/34842/66c0a9feF8b61f101/5f66da6b55a142bb.png.avif)  
 
 ## Python 的配置文件：魔改官方
 

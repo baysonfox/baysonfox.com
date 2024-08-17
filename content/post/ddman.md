@@ -6,7 +6,6 @@ preview: ""
 draft: false
 tags: ["录播"]
 categories: ["折腾"]
-type: default
 ---
 之前录了很多Vtuber的直播，全部上传到了录播站，可以用侧栏的“[录播站](https://rec.baysonfox.com)”访问
 
@@ -38,7 +37,7 @@ type: default
 2. _3822389-有栖Mana\_Official_ 在2021/7/30的B限录播文件损坏 无法处理 无档
 {{</ toggle>}}
 
-![image.png](https://p0.meituan.net/csc/2677774ad158fd6dda25332950ce3f3441638.png@1e_1c.webp)
+![image.png](https://img30.360buyimg.com/img/jfs/t20270817/27609/19/22719/36161/66c0a9b5Fefd24228/aadf3ad22ffc334c.png.avif)
 
 **录制VTuber和VUP们仅仅是个人爱好和存档用**  
 如有不妥可联系baysonfox#baysonfox.com (# -> @).

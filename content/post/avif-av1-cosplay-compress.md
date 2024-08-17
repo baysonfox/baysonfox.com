@@ -1,14 +1,12 @@
 ---
-title: 用 AVIF 和 AV1 压缩 Cosplay 图库的体积
-description: ""
-date: 2024-06-19T14:30:22.971Z
-preview: ""
+author: "baysonfox"
+title: "用 AVIF 和 AV1 压缩 Cosplay 图库的体积"
+date: "2024-06-19"
 draft: false
 tags: ['AVIF', 'AV1', 'Cosplay']
 categories: ['折腾']
-type: default
 slug: avif-av1-cosplay-compress
-image: https://p0.meituan.net/csc/1a37138365cc6b426bb2cc9d498d68df36910.png@1e_1c.webp
+image: https://img30.360buyimg.com/img/jfs/t20270817/242001/17/15436/39082/66c09017F03027e81/d726acbc1a6a2584.png.avif
 ---
 
 编辑历史:  
@@ -20,10 +18,10 @@ image: https://p0.meituan.net/csc/1a37138365cc6b426bb2cc9d498d68df36910.png@1e_1
 ## 事出必有因
 
 前几天闲来无事，于是打算看下自己的 Cosplay 收藏有多少，遂`du -sh`，结果如下:  
-![Cosplay文件夹占用了354G的储存空间](https://p1.meituan.net/csc/a847f8ee9df9c0d2134779a11d2f1ceb25079.png@1e_1c.webp)  
+![Cosplay文件夹占用了354G的储存空间](https://img30.360buyimg.com/img/jfs/t20270817/226766/37/23285/23993/66c0a3f3Fb9c4ca77/db8ba79127a8f4c8.png.avif)  
 **这可不好.jpg**  
 于是点进去准备一探究竟，看看图片有多吃空间:  
-![图片的大小](https://p0.meituan.net/csc/f7386896af3ddc413f6c0e5093b436ef18258.png@1e_1c.webp)  
+![图片的大小](https://img30.360buyimg.com/img/jfs/t20270817/243652/15/14618/18199/66c0a84aFdf651670/15b6fa6711eaad18.png.avif)  
 这能忍？开干！
 
 ## 那咋整呢？
@@ -99,7 +97,7 @@ Wrote AVIF: Coser-***.avif
 {{< /toggle >}}
 
 再看看图片大小(下方为原图):  
-![JPEG格式的原图和AVIF格式下的图片大小对比](https://p1.meituan.net/csc/64561a69b040f4823814c8e700c0df4114887.png@1e_1c.webp)  
+![JPEG格式的原图和AVIF格式下的图片大小对比](https://img30.360buyimg.com/img/jfs/t20270817/21356/16/22964/15080/66c0a881F512aa315/7665e05258bcafd2.png.avif)  
 **效果立竿见影**  
 93%的压缩率，很难不觉得 AVIF 不香。
 
@@ -166,14 +164,14 @@ Cosplay 图库里的数据实在太多 根本压不完（
 
 略过文中的测试方法，直接看结论：  
 编码性能（以 FPS 衡量）:  
-![在 crf 和预设不同情况下的编码速度(按照 FPS 标准)](https://p0.meituan.net/csc/7c50d18a437fb36bd6431a883d20e2f2492155.png@1e_1c.webp)
+![在 crf 和预设不同情况下的编码速度(按照 FPS 标准)](https://img30.360buyimg.com/img/jfs/t20270817/67251/39/26337/491422/66c0a89aF1d3a7827/d9ff25216cd40b02.png.avif)
 
 编码质量(SSIM):  
-![编码质量（SSIM）标准](https://p1.meituan.net/csc/00e717f537c3e9e0a4e72ecfd2833849445088.png@1e_1c.webp)  
+![编码质量（SSIM）标准](https://img30.360buyimg.com/img/jfs/t20270817/232809/38/24657/444827/66c0a8b1Fd050d1fa/40903af01044ebcd.png.avif)  
 PSNR:  
-![编码质量（PSNR）标准](https://p0.meituan.net/csc/f0a5ccb3e23edeca9e0a30f4e87ef9d7477730.png@1e_1c.webp)  
+![编码质量（PSNR）标准](https://img30.360buyimg.com/img/jfs/t20270817/53442/8/25771/476992/66c0a8d6Fb0cfcaad/73e2f10f690ad7c3.png.avif)  
 VMAF:
-![编码质量（VMAF）标准](https://p0.meituan.net/csc/41bbeb72442428fe76b0603aa9f4cd8d462633.png@1e_1c.webp)
+![编码质量（VMAF）标准](https://img30.360buyimg.com/img/jfs/t20270817/20132/6/22579/462606/66c0a952F9af27057/d32e5fdeb9139398.png.avif)
 
 由图可知，所使用的preset与crf (`-preset 10 -crf 38`) 下,SSIM 与 PSNR 都与较低预设值和较低 crf 的对应参数区别不大，编码速度也落在了比较舒适的范围，因此使用此参数。  
 事实上，根据原文作者的结论，似乎`-preset 12 -crf 38`与`-preset 2`的视频参数似乎区别不大，但是速度提升了135倍，完全可以直接无脑冲……？  

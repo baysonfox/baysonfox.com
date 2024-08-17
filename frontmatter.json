@@ -6,5 +6,9 @@
       "path": "[[workspace]]/content/post"
     }
   ],
-  "frontMatter.website.host": "https://baysonfox.com"
+  "frontMatter.website.host": "https://baysonfox.com",
+  "frontMatter.content.publicFolder": "static",
+  "frontMatter.framework.id": "hugo",
+  "frontMatter.preview.host": "http://localhost:1313",
+  "frontMatter.taxonomy.contentTypes": []
 }
