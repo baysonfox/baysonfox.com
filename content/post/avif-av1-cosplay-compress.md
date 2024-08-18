@@ -12,6 +12,7 @@ image: https://img30.360buyimg.com/img/jfs/t20270817/242001/17/15436/39082/66c09
 编辑历史:  
 
 - 2024/06/29 更新 AV1 部分调参内容
+- 2024/08/18 介于接下来的内容还放在这过于冗长，又多开了一篇：[https://baysonfox.com/2024/08/18/avif-av1-compress-part-two/](https://baysonfox.com/2024/08/18/avif-av1-compress-part-two/)
 
 ---
 

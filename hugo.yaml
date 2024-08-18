@@ -4,6 +4,7 @@ title: 湾儿子狐狸
 theme: hugo-theme-stack
 copyright: baysonfox
 hasCJKLanguage: true
+buildFuture: true
 defaultContentLanguage: zh-cn
 
 permalinks:
