@@ -1,7 +1,7 @@
 ---
 title: 使用MSVC和VSCode搭建C语言开发环境
 description: ""
-date: 2024-07-09T16:37:40.044Z
+date: 2024-10-09T23:26:40.031Z
 preview: ""
 draft: false
 tags: ['VSCode', 'C', 'Code Infrastructure']
