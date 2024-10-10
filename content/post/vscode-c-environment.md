@@ -41,7 +41,7 @@ image: https://img30.360buyimg.com/img/jfs/t20271009/200262/3/45092/119332/67069
 ![MSYS2 Finished Installing](https://img30.360buyimg.com/img/jfs/t20271010/165593/19/49464/10547/670770c2F258218e8/9392ee647909a4a7.png.avif)
 ![MSYS2 Default Window](https://img30.360buyimg.com/img/jfs/t20271009/191163/21/49007/3624/67069babFb7e1e489/86d9dd2985bd931b.png.avif)
 
-4. 在弹出的窗口内, 输入`pacman -S --needed base-devel mingw-w64-x86_64-toolchain` （建议直接复制粘贴）, 在提示"Enter a selection (default=all)"时直接enter确认，待它自动安装.
+4. 在弹出的窗口内, 输入`pacman -S --needed base-devel mingw-w64-x86_64-toolchain` （建议直接复制粘贴）(在MSYS2内，使用Shift + 鼠标左键，下同), 在提示"Enter a selection (default=all)"时直接enter确认，待它自动安装.
 ![Installing MinGW-64](https://img30.360buyimg.com/img/jfs/t20271010/188945/10/48640/133274/6707710cF3b2e9136/167e68848fdbcc9f.png.avif)
 5. 在安装结束之后（你发现你可以随便输入命令，且回车能出现结果后），输入`gcc -v`测试安装是否成功, 如果在底部附近出现了 `gcc version` 的字样，说明安装应该没有什么问题。
 ![Picture displaying gcc's version after installing MinGW toolchain](https://img30.360buyimg.com/img/jfs/t20271010/192074/35/47476/36610/670771a7F83ccf8f9/69e3e05d0678fb62.png.avif)
