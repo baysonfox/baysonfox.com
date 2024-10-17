@@ -27,7 +27,7 @@ params:
     customText: "Made with ❤️ from baysonfox"
 
   article:
-    math: false
+    math: true
     toc: true
     readingTime: true
     license:
@@ -153,6 +153,19 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+      
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
 
 build:
   writeStats: true
