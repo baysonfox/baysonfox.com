@@ -96,6 +96,12 @@ menu:
       params:
         newTab: false
         icon: categories
+    - name: 友情链接
+      url: /links
+      weight: -85
+      params:
+        newTab: false
+        icon: friend-link
     - name: 录播站
       url: https://rec.baysonfox.com
       weight: -80
