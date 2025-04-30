@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Stand by Her Side</title>
+        <link
+            rel="preconnect"
+            href="https://chinese-fonts-cdn.deno.dev"
+            crossorigin
+        />
+        <link
+            rel="stylesheet"
+            href="https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css"
+        />
+        <style>
+            /* Basic style reset and setup */
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden; /* Prevent scrollbars */
+                background-color: #000000; /* Pure black background */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: "Source Han Serif CN VF", serif; /* Apply font */
+            }
+
+            /* Main container for positioning */
+            .container {
+                position: relative;
+                width: 80vmin; /* Use vmin for relative sizing */
+                height: 80vmin;
+            }
+
+            /* Container for faint arcs */
+            .faint-arcs-container {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                overflow: visible; /* Allow larger arcs to extend */
+            }
+
+            /* Common styles for faint arcs */
+            .faint-arc {
+                position: absolute;
+                top: -25%; /* Adjusted for 150% size */
+                width: 150%;
+                height: 150%;
+                border-radius: 50%;
+                border-color: rgba(
+                    128,
+                    128,
+                    128,
+                    0.5
+                ); /* Gray with 50% opacity */
+                border-width: 2px; /* Increased thickness */
+                border-style: solid;
+            }
+
+            /* Specific borders for each arc */
+            .arc1 {
+                left: 0;
+                border-left-color: rgba(128, 128, 128, 0.5);
+                border-top-color: rgba(128, 128, 128, 0.5);
+                border-bottom-color: rgba(128, 128, 128, 0.5);
+                animation: moveHorizontal1 6s ease-in-out infinite alternate;
+            }
+
+            .arc2 {
+                right: 0;
+                border-right-color: rgba(128, 128, 128, 0.5);
+                border-top-color: rgba(128, 128, 128, 0.5);
+                border-bottom-color: rgba(128, 128, 128, 0.5);
+                animation: moveHorizontal2 6s ease-in-out infinite alternate;
+            }
+
+            /* Main animated circles container */
+            .main-circles-container {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+            }
+
+            /* Common styles for main circles */
+            .main-circle {
+                position: absolute;
+                width: 50%;
+                height: 50%;
+                background-color: rgb(
+                    128 128 128
+                ); /* Base color, opacity controlled by animation */
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0; /* Start invisible */
+                animation: breathe 4s linear infinite;
+            }
+
+            /* Positioning for main circles */
+            .circle-tl {
+                top: 0;
+                left: 0;
+                animation-delay: 0s;
+            }
+            .circle-tr {
+                top: 0;
+                right: 0;
+                animation-delay: 1s;
+            }
+            .circle-bl {
+                bottom: 0;
+                left: 0;
+                animation-delay: 2s;
+            }
+            .circle-br {
+                bottom: 0;
+                right: 0;
+                animation-delay: 3s;
+            }
+
+            /* Inner black dot */
+            .inner-dot {
+                width: 10%;
+                height: 10%;
+                background-color: #000000;
+                border-radius: 50%;
+                opacity: 1; /* Ensure dot is always visible when parent is */
+            }
+
+            /* Centered text block */
+            .center-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #ffffff;
+                text-align: center;
+                font-size: 2.5vmin;
+                font-weight: 300; /* Light weight */
+                white-space: nowrap;
+                z-index: 3;
+            }
+
+            /* First line style */
+            .first-line {
+                margin: 1.5em 0;
+                padding: 0;
+                display: inline-block; /* Needed for relative positioning of cursor */
+                position: relative;
+            }
+            .first-line-text {
+                border-bottom: 1px solid white;
+                padding-bottom: 1px; /* Adjust spacing */
+            }
+            .cursor {
+                display: inline-block;
+                margin-left: 0.25em; /* Adjust spacing */
+                animation: blink 1s step-end infinite;
+            }
+
+            /* Button styles */
+            .text-button {
+                margin: 1.5em 0;
+                padding: 0.5em; /* Add some padding for easier hover */
+                cursor: pointer;
+                transition: color 0.3s ease-out;
+                color: white; /* Default color */
+            }
+            .text-button.inactive {
+                color: #6b7280; /* Gray-500 equivalent */
+            }
+
+            /* Inner span for underline positioning */
+            .button-text {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Underline style */
+            .underline {
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: white;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s ease-out;
+            }
+            .text-button:hover .underline,
+            .text-button.active .underline {
+                /* Show underline on hover or when active */
+                transform: scaleX(1);
+            }
+
+            /* Keyframes */
+            @keyframes breathe {
+                0% {
+                    opacity: 0;
+                }
+                12.5% {
+                    opacity: 0.3;
+                }
+                25% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            @keyframes moveHorizontal1 {
+                0% {
+                    transform: translateX(-50%);
+                }
+                100% {
+                    transform: translateX(0%);
+                }
+            }
+            @keyframes moveHorizontal2 {
+                0% {
+                    transform: translateX(50%);
+                }
+                100% {
+                    transform: translateX(0%);
+                }
+            }
+
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="faint-arcs-container">
+                <div class="faint-arc arc1"></div>
+                <div class="faint-arc arc2"></div>
+            </div>
+
+            <div class="main-circles-container">
+                <div class="main-circle circle-tl">
+                    <div class="inner-dot"></div>
+                </div>
+                <div class="main-circle circle-tr">
+                    <div class="inner-dot"></div>
+                </div>
+                <div class="main-circle circle-bl">
+                    <div class="inner-dot"></div>
+                </div>
+                <div class="main-circle circle-br">
+                    <div class="inner-dot"></div>
+                </div>
+            </div>
+
+            <div class="center-text">
+                <p class="first-line">
+                    <span class="first-line-text">你会理解我的。</span
+                    ><span class="cursor">|</span>
+                </p>
+                <div class="text-button" id="button-agree">
+                    <span class="button-text">
+                        同意
+                        <span class="underline"></span>
+                    </span>
+                </div>
+                <div class="text-button" id="button-choice">
+                    <span class="button-text">
+                        我会有自己的选择
+                        <span class="underline"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Get button elements
+            const buttonAgree = document.getElementById("button-agree");
+            const buttonChoice = document.getElementById("button-choice");
+            const buttons = [buttonAgree, buttonChoice];
+            let currentActiveButtonId = null; // Track the ID of the clicked button
+
+            // Function to update button states based on currentActiveButtonId
+            function updateButtonStates() {
+                buttons.forEach((button) => {
+                    if (
+                        currentActiveButtonId &&
+                        button.id === currentActiveButtonId
+                    ) {
+                        button.classList.add("active");
+                        button.classList.remove("inactive");
+                    } else if (currentActiveButtonId) {
+                        // Only make others inactive if one is active
+                        button.classList.remove("active");
+                        button.classList.add("inactive");
+                    } else {
+                        // No button is actively clicked
+                        button.classList.remove("active");
+                        button.classList.remove("inactive");
+                    }
+                });
+            }
+
+            // Function to handle button click/tap
+            function handleButtonClick(event) {
+                const clickedButton = event.target.closest(".text-button");
+                if (!clickedButton) return;
+
+                // Set the new active button ID
+                currentActiveButtonId = clickedButton.id;
+                updateButtonStates(); // Update styles based on the click
+            }
+
+            // Function to handle mouse over
+            function handleMouseOver(event) {
+                const hoveredButton = event.target.closest(".text-button");
+                if (!hoveredButton) return;
+
+                buttons.forEach((button) => {
+                    // Make the non-hovered button inactive, but only if it's not the currently active one
+                    if (
+                        button !== hoveredButton &&
+                        (!currentActiveButtonId ||
+                            button.id !== currentActiveButtonId)
+                    ) {
+                        button.classList.add("inactive");
+                    }
+                    // Ensure the hovered button is not marked as inactive (even if it's not the active one)
+                    if (button === hoveredButton) {
+                        button.classList.remove("inactive");
+                    }
+                });
+            }
+
+            // Function to handle mouse out
+            function handleMouseOut(event) {
+                // When mouse leaves, simply re-apply the styles based on the clicked state
+                updateButtonStates();
+            }
+
+            // Add event listeners
+            buttons.forEach((button) => {
+                button.addEventListener("click", handleButtonClick);
+                button.addEventListener("mouseover", handleMouseOver);
+                button.addEventListener("mouseout", handleMouseOut);
+            });
+
+            console.log(
+                "Visual effect loaded (HTML/CSS/JS - Hover & Click interaction).",
+            );
+        </script>
+    </body>
+</html>
