@@ -1,0 +1,9 @@
+{
+    "redirects": [
+      {
+        "source": "/bhs",
+        "destination": "/byherside.html",
+        "statusCode": 301
+      }
+    ]
+}
