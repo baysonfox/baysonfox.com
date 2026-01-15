@@ -24,7 +24,7 @@ params:
 
   footer:
     since: 2020
-    customText: "Made with ❤️ from baysonfox, 由 <a href='https://yxvm.com/aff.php?aff=636'>YxVM</a> 赞助"
+    customText: "Made with ❤️ from baysonfox"
 
   article:
     math: true
